@@ -37,12 +37,8 @@ const useFetch = (url,body,toDo) => {
      setLoading(false);
      setResult(data);
 
-      if (data.message) {
-        let perform = toDo();
-        if (perform === "creds") {
-        localStorage.setItem("username",data.username)
-        setUser(data.username)
-      }
+      if (res.ok) {
+       toDo(data)
       }
      } catch(e) {
       console.error(e)

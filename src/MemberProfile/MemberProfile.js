@@ -235,7 +235,7 @@ function MemberProfile() {
               <p>Photos</p>
 
               <div class="images-container">
-                {!member.picsPaths.length && (
+                {member.picsPath && !member.picsPaths.length && (
                   <p style={{ gridColumn: "1/span 3" }} ref={noPhotoText}>
                     {" "}
                     <CameraAltOutlinedIcon /> No Photos Yet
