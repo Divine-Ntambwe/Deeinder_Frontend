@@ -21,7 +21,7 @@ import Messages from "./Messages/Messages";
 import MessagingContext from "./Context/MessagingContext";
 import io from "socket.io-client"
 
-export const socket = io.connect("https://deeinder-backend.onrender.com/")
+export const socket = io.connect("https://deeinder-backend.onrender.com")
 
 export const UserContext = React.createContext();
 
