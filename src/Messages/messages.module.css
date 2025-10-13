@@ -1,0 +1,154 @@
+.container {
+  display: flex;
+  height: 91vh;
+  background-color: #000000;
+}
+
+.sidebar {
+  width: 25%;
+  background-color: #350b69;
+  color: white;
+  padding: 16px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.search {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.userImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.userName {
+  font-size: 14px;
+  display: block;
+  width: 90%;
+}
+
+.user:hover {
+  cursor: pointer;
+  background-color:rgb(128, 0, 128,0.2);
+  border-radius: 2px;
+}
+
+.chat {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.chatHeader {
+  background-color: #4a4a4a;
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatHeaderInfo {
+  display: flex;
+  align-items: center;
+}
+
+.chatHeaderName {
+  margin-left: 8px;
+}
+
+.chatInfo {
+  color: #a0a0a0;
+}
+
+.chatMessages {
+  height: fit-content;
+  margin-top: auto;
+  /* flex: 1; */
+  background-color: #000000;
+  padding: 16px;
+  overflow-y: auto;
+  justify-self: flex-end !important;
+}
+
+.message {
+  margin-bottom: 8px;
+}
+
+.userMessage {
+  text-align: right;
+}
+
+.otherMessage {
+  text-align: left;
+}
+
+.messageText {
+  display: inline-block;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.userMessage .messageText {
+  background-color: #800080;
+}
+
+.otherMessage .messageText {
+  background-color: #4a4a4a;
+}
+
+.chatInput {
+  padding: 16px;
+  background-color: #350b69 ;
+  display: flex;
+  margin: 15px;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.inputField {
+  color: white;
+  flex: 1;
+  padding: 8px;
+  border-radius: 4px 0 0 4px;
+  background-color: #350b69 ;
+  border: none;
+}
+
+.inputField:focus{
+  border: none !important;
+}
+
+.sendButton {
+  background-color: inherit;
+  color: gray;
+  
+  border-radius: 0 4px 4px 0;
+  border: none;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+img {
+  object-fit: cover;
+}

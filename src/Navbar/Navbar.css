@@ -1,0 +1,37 @@
+ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    padding: 12px 40px;
+    background-color: rgb(65, 8, 125);
+    height: 80px
+}
+
+#splash-nav-h1{
+    font-size: 40px;
+    font-weight: normal;
+    color: gray;
+    font-family: "Playwrite US Modern";
+}
+
+#splash-nav-links {
+    display: flex;
+    color: gray;
+    font-size: 17px;
+}
+
+#splash-nav-login{
+    color: white;
+    /* border: none; */
+    background-color: gray;
+    border-radius: 50px;
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+}
+
+#splash-nav-links a {
+    text-decoration: none;
+    color: inherit;
+}

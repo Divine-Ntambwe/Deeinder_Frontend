@@ -1,0 +1,281 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-profile {
+    /* position: fixed; */
+    width: 100%;
+    
+}
+
+.profile-navbar {
+    position: sticky !important;
+    top: 0;
+    z-index: 2;
+}
+#top-mp {
+    background-color: black;
+    min-height: 300px;
+    display: grid;
+    grid-template-columns: 20% 25% 50%;
+    padding: 35px 0;
+    gap: 25px;
+    /* border: 1px solid blueviolet; */
+}
+
+#bottom-mp {
+    background-color: #636363;
+    min-height: 500px;
+    
+}
+
+#body-mp {
+    display: flex;
+    flex-direction:column;
+    color: #a6a6a6;
+    font-family: "raleway";
+    background-color: #636363;
+    /* height: 100vh; */
+ 
+}
+
+#member-pfp-cont{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid bisque; */
+    margin-top: -15px;
+}
+
+#member-pfp {
+    height: 30vh;
+    width: 30vh;
+    clip-path: circle();
+}
+
+.name-age{
+    font-size: 32px;
+}
+
+.short-desc {
+    font-size: 23px;
+    padding-top: 15px;
+}
+
+.purple-text{
+    color: #cb6ce6;
+    font-size: 21px;
+    padding-top: 10px;
+}
+
+@keyframes likeBtn {
+    0% {transform: scale(0.9);}
+    100%{transform: scale(1);}
+}
+
+.Like-Req-btn:active{
+animation: likeBtn 0.5s;
+}
+.like-connection-grp{
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+}
+
+.like-connection-grp i {
+    font-size: 52px;
+}
+
+.rel-intent {
+    font-size: 23px;
+}
+
+.interests {
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    gap: 20px 80px;
+    margin-top: 12px;
+}
+
+.interests span {
+    height: 40px;
+    width: 100%;
+    background-color: #a6a6a6;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.intent-intests {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+#bottom-mp{
+    padding: 10px 30px;
+}
+
+#bottom-mp p {
+    font-size: 32px;
+}
+
+.images-container {
+    display: grid;
+    grid-template-columns: 13% 13% 13% 13% 13% 13% ;
+    grid-template-rows: auto;
+    margin: 10px 0 30px 10px;
+    gap: 20px 50px;
+    align-items: center;
+
+}
+
+.images-container img {
+    width: 100%;
+    height: 180px;
+    border-radius: 15px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.about-val {
+padding-left: 10px;
+color: black;
+font-weight: 500;
+}
+
+.aboutMe {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap: 15px 0
+}
+
+.edit-prof {
+    text-align: right;
+    background-color: black;
+    padding: 15px 15px 0 0;
+}
+
+.profile-popup-cont {
+    height: 100vh;
+    width: 100%;
+    z-index: 3;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+
+.profile-popup {
+    height: 700px;
+    width: 40vw;
+    background-color:#636363;
+    padding: 0 10px 10px 10px;
+    overflow-y: scroll;
+}
+
+.profile-popup h2{
+    font-size: 2em;
+    text-align: center;
+    font-family: "Playwrite US Modern";
+    display: inline;
+}
+
+#edit-prof-header{
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: sticky;
+top:0;
+width: 100%;
+background-color: inherit;
+z-index: 2;
+}
+
+.edit-pfp{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-pfp div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.edit-pfp img{
+    height: 20vh;
+    width: 8vw;
+    clip-path: circle();
+    object-fit: cover;
+}
+
+.edit-pfp p {
+    font-size: 2em;
+}
+
+.edit-pfp button {
+    background-color: #cb6ce6;
+    height: 5vh;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.profile-popup label{
+    /* display: block; */
+}
+
+.profile-popup input:not(.cbx,.add-interest), select {
+    border-radius: 20px;
+    height: 4vh;
+    width: 85%;
+    padding: 5px 15px;
+    margin: 10px 0;
+    font-size: 1em;
+    display: block;
+}
+
+.profile-popup fieldset{
+    padding: 5px 10px;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.cbx {
+    margin: 3px 1px;
+}
+.add-interest{
+    border-radius: 20px;
+    height: 4vh;
+    width: 80%;
+    padding: 5px 15px;
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.add-interest-btn {
+    width: 5vw;
+    height: 3vh;
+    margin: 0 5px;
+    background-color: #cb6ce6;
+}
+
+#save-discard {
+    width: 100px;
+    background-color: #cb6ce6;
+    display: inline;
+    margin: 0 0 0 10px ;
+    font-size: 1em;
+   
+
+}
+
+.button:hover {
+    cursor: pointer;
+}

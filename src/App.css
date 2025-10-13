@@ -1,0 +1,154 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "raleway";
+}
+
+#splashBG {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  
+}
+
+#splash-screen {
+overflow: hidden;
+}
+
+#Login,#SignUp {
+ width: 100vw;
+ height: 100vh;
+ overflow: hidden;
+}
+
+.main-heading {
+  font-size: 26px;
+  font-weight: normal;
+  color: gray;
+  font-family: "Playwrite US Modern";
+  padding: 10px 25px;
+  align-self: flex-start;
+}
+
+.main-bg {
+background-color: #350b69;
+height: 100vh;
+}
+
+#login-heading,#signup-heading {
+  color: white;
+  font-weight: normal;
+  font-size: 32px;
+  text-align: center;
+  padding-bottom: 70px ;
+  font-family: "Playwrite US Modern";
+}
+
+#signup-heading {
+  padding-bottom: 10px;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 80vh;
+}
+
+#login-form form {
+  width: 400px;
+  height: 450px;
+}
+
+#login-form input{
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  margin: 10px 0 40px 0;
+}
+
+#login-button {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  background-color: #6215a3;
+  border-radius: 10px;
+  border: none;
+  color: lightgray;
+  margin: 10px 0 10px 0;
+}
+
+#display-error {
+  color: red;
+  text-align: center;
+}
+
+#signup-form {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  color: white;
+  width: 100vw;
+  height: 67vh;
+}
+
+#left, #right {
+  padding: 0px 10px 0 50px;
+}
+
+#signup-form input{
+  width: 100%;
+  height: 35px;
+  font-size: 20px;
+  margin: 10px 0 40px 0;
+}
+
+#right div:not(#genders,#female-cont,#male-cont,#ts-cs) {
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+}
+#genders{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 100%;
+  margin-top: 0px;
+
+}
+
+#genders div {
+  display: flex;
+  margin-top: 15px;
+}
+
+#genders input{
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin: 0px 10px 45px 0;
+}
+
+#ts-cs-ch {
+  margin: 0 10px 0 0 !important;
+  display: inline;
+  width: 20px !important;
+ 
+
+}
+
+#ts-cs{
+  display: flex;
+  align-items: center;
+  margin-top: 70px;
+}
+
+#SignUp form{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+ 
+}
