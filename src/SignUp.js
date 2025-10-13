@@ -57,6 +57,7 @@ function SignUp() {
 
   postMedia(formData,(d)=>{
     localStorage.setItem("user",JSON.stringify(d));
+    setUser(d)
     nav('/Home');
   }) 
 
