@@ -33,14 +33,14 @@ function SignUp() {
   const [pfp,setPfp] =useState('emptyPfp.png')
   const [pfpFile,setFile] = useState('')
 
-  const url = "http://localhost:5000/signUp";
+  const {url} = useContext(UserContext);
 
   const nav = useNavigate();
  
   let today = new Date() ;
   let todayDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2,"0")}-${(today.getDate()).toString().padStart(2,"0")}`
   
-  const {postMedia,result,loading} = useFetch(url);
+  const {postMedia,result,loading} = useFetch(`${url}/signUp`);
   const {user, setUser} = useContext(UserContext);
 
 
