@@ -25,6 +25,7 @@ export const socket = io.connect("https://deeinder-backend.onrender.com/")
 
 export const UserContext = React.createContext();
 
+
 function App() {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || ""
