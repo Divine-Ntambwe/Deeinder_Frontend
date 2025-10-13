@@ -514,7 +514,7 @@ function UserProfile() {
           <p>Photos</p>
 
           <div class="images-container">
-            {
+            {member&&
               member.picsPaths.length !== 0 &&
               member.picsPaths.map((path) => <img onClick={()=>{handleClickOpen(`${url}/${path}`)}} src={`${url}/${path}`} />)}
             <AddPhotoAlternateIcon
