@@ -267,7 +267,8 @@ function UserProfile() {
                 <input
                   required
                   value={newUsername}
-                  onChange={(e) => setUsername(e.target.value)}
+                  style={{color:"gray"}}
+                  // onChange={(e) => setUsername(e.target.value)}
                 />
 
                 <label>
