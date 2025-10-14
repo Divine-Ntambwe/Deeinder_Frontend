@@ -5,6 +5,7 @@ import useFetch from "../useFetch";
 import { UserContext,socket } from "../App";
 import { members } from "../Context/MembersContext";
 import { Messaging } from "../Context/MessagingContext";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Messages = () => {
   const {messagedUsers,currentChat,setCurrentChat,handleDisplayChat,room,newChat,setNewChat} = useContext(Messaging)
@@ -14,6 +15,8 @@ const Messages = () => {
   const [messageSent, setMessageSent] = useState();
   const [messageRecieved,setMessageRecieved] = useState();
   const underLastText = useRef()
+  const chat = useRef()
+  const sidebar = useRef()
   useEffect(()=>{
     socket.on("recieve_message",(data)=>{
 
@@ -66,7 +69,7 @@ const Messages = () => {
         <CommonNavbar />
       </div>
       <div className={styles.container}>
-        <div className={styles.sidebar}>
+        <div className={styles.sidebar}  ref={sidebar}>
           <h2 className={styles.title}>Messages</h2>
           {/* <input className={styles.search} placeholder="Search..." /> */}
           {messagedUsers &&
@@ -77,10 +80,17 @@ const Messages = () => {
                 className={styles.user}
                 onClick={() => {
                   handleDisplayChat(user);
+                  chat.current.style.display = "flex"
+                  // alert(sidebar.current)
+                  if (window.matchMedia("(max-width: 768px)").matches){
+                    
+                    sidebar.current.style.display = "none"
+                  }
+
                 }}
               >
                 <img
-                  src={`${url}/${
+                  src={`${
                     allMembers.find((member) => {
                       return member.username === user;
                     }).pfpPath
@@ -92,11 +102,19 @@ const Messages = () => {
               </div>
             ))}
         </div>
-        <div className={styles.chat}>
+        <div className={styles.chat} ref={chat}>
           {currentChat && (
             <>
               <div className={styles.chatHeader}>
                 <div className={styles.chatHeaderInfo}>
+                  <ArrowBackIcon
+                  className={styles.back}
+                  style={{paddingRight:"5px",fontSize:"2em"}}
+                  onClick={()=>{
+                    chat.current.style.display = "none"
+                    sidebar.current.style.display = "block"
+                  }}
+                  />
                   <img
                     src={currentChat.pfp}
                     alt={currentChat.fullName}

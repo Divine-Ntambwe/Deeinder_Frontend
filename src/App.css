@@ -1,52 +1,54 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "raleway";
+  font-family: "Raleway", sans-serif;
 }
 
 #splashBG {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  
 }
 
 #splash-screen {
-overflow: hidden;
+  overflow: hidden;
 }
 
-#Login,#SignUp {
- width: 100vw;
- height: 100vh;
- overflow: hidden;
+#Login,
+#SignUp {
+  width: 100vw;
+  min-height: 100vh;
+  padding-bottom: 1em !important;
+   background-color: #350b69;
 }
 
 .main-heading {
-  font-size: 26px;
+  font-size: 2rem; /* medium size */
   font-weight: normal;
   color: gray;
-  font-family: "Playwrite US Modern";
-  padding: 10px 25px;
+  font-family: "Playwrite US Modern", sans-serif;
+  padding: 15px 5%;
   align-self: flex-start;
 }
 
 .main-bg {
-background-color: #350b69;
-height: 100vh;
+  background-color: #350b69;
+  /* min-height: 100vh; */
 }
 
-#login-heading,#signup-heading {
+#login-heading,
+#signup-heading {
   color: white;
   font-weight: normal;
-  font-size: 32px;
+  font-size: 2.2rem; /* medium */
   text-align: center;
-  padding-bottom: 70px ;
-  font-family: "Playwrite US Modern";
+  padding-bottom: 5rem;
+  font-family: "Playwrite US Modern", sans-serif;
 }
 
 #signup-heading {
-  padding-bottom: 10px;
+  padding-bottom: 1.5rem;
 }
 
 #login-form {
@@ -56,29 +58,32 @@ height: 100vh;
   align-items: center;
   color: white;
   height: 80vh;
+  padding: 0 10px;
 }
 
 #login-form form {
-  width: 400px;
-  height: 450px;
+  width: 90%;
+  max-width: 450px; /* medium form */
+  height: auto;
 }
 
-#login-form input{
+#login-form input {
   width: 100%;
-  height: 50px;
-  font-size: 20px;
-  margin: 10px 0 40px 0;
+  height: 55px; /* medium input */
+  font-size: 1.25rem; /* readable text */
+  margin: 12px 0 30px 0;
+  padding: 0 12px;
 }
 
 #login-button {
   width: 100%;
-  height: 50px;
-  font-size: 20px;
+  height: 55px; /* medium button */
+  font-size: 1.25rem;
   background-color: #6215a3;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
   color: lightgray;
-  margin: 10px 0 10px 0;
+  margin: 12px 0;
 }
 
 #display-error {
@@ -88,34 +93,38 @@ height: 100vh;
 
 #signup-form {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
   color: white;
-  width: 100vw;
-  height: 67vh;
-}
-
-#left, #right {
-  padding: 0px 10px 0 50px;
-}
-
-#signup-form input{
   width: 100%;
-  height: 35px;
-  font-size: 20px;
-  margin: 10px 0 40px 0;
+  max-width: 1300px;
+  margin: 0 auto;
+  gap: 15px;
+  padding: 0 5%;
+}
+
+#left,
+#right {
+  padding: 0 15px;
+}
+
+#signup-form input {
+  width: 100%;
+  height: 45px; /* medium input */
+  font-size: 1.25rem;
+  margin: 12px 0 25px 0;
+  padding: 0 12px;
 }
 
 #right div:not(#genders,#female-cont,#male-cont,#ts-cs) {
   display: flex;
-  /* align-items: center; */
   flex-direction: column;
 }
-#genders{
+
+#genders {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
   margin-top: 0px;
-
 }
 
 #genders div {
@@ -123,32 +132,103 @@ height: 100vh;
   margin-top: 15px;
 }
 
-#genders input{
-  width: 20px;
-  height: 20px;
+#genders input {
+  width: 22px; /* medium */
+  height: 22px; /* medium */
   display: block;
-  margin: 0px 10px 45px 0;
+  margin: 0 12px 20px 0;
 }
 
 #ts-cs-ch {
   margin: 0 10px 0 0 !important;
   display: inline;
-  width: 20px !important;
- 
-
+  width: 22px !important;
 }
 
-#ts-cs{
+#ts-cs {
   display: flex;
   align-items: center;
-  margin-top: 70px;
+  margin-top: 50px;
 }
 
-#SignUp form{
+#SignUp form {
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: auto;
   align-items: center;
- 
+  padding: 0 10px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  #signup-form {
+    grid-template-columns: 1fr;
+    padding: 0 5%;
+  }
+
+  #login-form form {
+    width: 100%;
+  }
+
+  #login-heading,
+  #signup-heading {
+    font-size: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  .main-heading {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #login-form input,
+  #signup-form input {
+    font-size: 1.1rem;
+    height: 45px;
+  }
+
+  #login-button {
+    font-size: 1.1rem;
+    height: 45px;
+  }
+
+  #login-heading,
+  #signup-heading {
+    font-size: 1.8rem;
+    padding-bottom: 3rem;
+  }
+
+  .main-heading {
+    font-size: 1.6rem;
+  }
+
+  #genders input {
+  margin: -10px 12px 20px 0;
+}
+}
+
+@media (max-width: 480px) {
+  #login-form input,
+  #signup-form input {
+    font-size: 1rem;
+    height: 40px;
+  }
+
+  #login-button {
+    font-size: 1rem;
+    height: 40px;
+  }
+
+  #login-heading,
+  #signup-heading {
+    font-size: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .main-heading {
+    font-size: 1.4rem;
+    padding: 12px 10px;
+  }
 }

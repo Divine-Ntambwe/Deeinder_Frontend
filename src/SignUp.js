@@ -74,23 +74,7 @@ function SignUp() {
       {result &&  <p id="display-error">{result.error}</p>}
         
       <div id="signup-form">
-        <div id="left">
-        <label>Full Name:</label>
-         <input required type="text" value={fullName} onChange={(e) => setFullName(e.target.value)}
-         ></input>
-
-         <label >Username:</label>
-         <input required type="text" value={username} onChange={(e) => setUsername(e.target.value)}></input>
-
-          <label>Email:</label>
-          <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
-
-         <label>Password:</label>
-         <input required  type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-
-         <label>Confirm Password:</label>
-         <input required  type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
-        </div>
+        
         
         <div id="right"> 
           <div id="upload-pfp">
@@ -103,7 +87,7 @@ function SignUp() {
       
     >
     
-     <img id="pfp-img" src={pfp} style={{objectFit:"fill", width:"250px",height:"180px", clipPath:"circle()", color:'gray'}}></img>
+     <img id="pfp-img" src={pfp} style={{objectFit:"fill", width:"230px",height:"166px", clipPath:"circle()", color:'gray'}}></img>
      Upload Profile Picture
       <VisuallyHiddenInput
         type="file"
@@ -123,7 +107,17 @@ function SignUp() {
            
           </div>
           
-           <label>Gender:</label>
+         
+          
+        
+
+        <label>Full Name:</label>
+         <input required type="text" value={fullName} onChange={(e) => setFullName(e.target.value)}
+         ></input>
+
+         <label >Username:</label>
+         <input required type="text" value={username} onChange={(e) => setUsername(e.target.value)}></input>
+<label>Gender:</label>
            <div id="genders">
 
             <div id="male-cont">
@@ -141,6 +135,19 @@ function SignUp() {
             </div>
 
            </div>
+        </div>
+        <div id="left">
+          <label>Email:</label>
+          <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+
+
+         <label>Password:</label>
+         <input required  type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+
+         <label>Confirm Password:</label>
+         <input required  type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
+        
+         
           
 
           <label>Date Of Birth:</label>
@@ -150,10 +157,9 @@ function SignUp() {
            <input required id="ts-cs-ch" type="checkbox"></input>
            <label htmlFor="ts-cs-ch">I accept the <Link>terms&conditions</Link></label>
          </div>
-        
-
-
         </div>
+        
+        
 
          
       </div>

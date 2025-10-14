@@ -45,7 +45,7 @@ function MessagingContext({children}) {
     socket.emit("join_room",roomId)
     
     setCurrentChat({
-      pfp: `${url}/${member.pfpPath}`,
+      pfp: `${member.pfpPath}`,
       name: member.fullName,
       username: member.username,
       messages,

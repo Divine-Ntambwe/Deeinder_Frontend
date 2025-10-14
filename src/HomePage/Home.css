@@ -130,3 +130,36 @@ color: #cb6ce6;
 }
 
 
+@media (max-width: 768px) {
+  #explore {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  #explore div {
+    height: 450px;
+  }
+
+  .slides img {
+    height: 300px;
+  }
+
+  .swiper {
+    height: 300px;
+  }
+
+  .mySwiper {
+    height: 300px !important;
+    font-size: 0.9em;
+  }
+
+  .swiper-details h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+
+  .nav-icons {
+    font-size: 32px;
+    width: 40px;
+  }
+}
