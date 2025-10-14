@@ -143,7 +143,7 @@ function Home() {
               exploreMembers.map((member) => (
                 <SwiperSlide>
                   <div className="slides">
-                    <img src={`${url}/${member.pfpPath}`} />
+                    <img src={`${member.pfpPath}`} />
                     <div className="swiper-details">
                       <h3>
                         {member.fullName}, {member.age}
@@ -200,7 +200,7 @@ function Home() {
                 <div key={member.username} className="preview-profile">
                   <img
                     alt={`a picture of ${member.username}`}
-                    src={`${url}/${member.pfpPath}`}
+                    src={`${member.pfpPath}`}
                   /> 
                   <h3>
                     {member.username}, {member.age}

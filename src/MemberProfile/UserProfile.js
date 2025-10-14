@@ -230,7 +230,7 @@ function UserProfile() {
                     <img
                       src={
                         newPfpPath === member.pfpPath
-                          ? url + "/" + member.pfpPath
+                          ? member.pfpPath
                           : newPfpPath
                       }
                     />

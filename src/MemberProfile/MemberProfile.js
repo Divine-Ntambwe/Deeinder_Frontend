@@ -4,7 +4,7 @@ import useFetch from "../useFetch";
 import "./MemberProfile.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
-import { grid, gridColumn, textAlign } from "@mui/system";
+import { fontSize, grid, gridColumn, textAlign } from "@mui/system";
 import Button from "@mui/material/Button";
 import { UserContext } from "../App.js";
 import CommonNavbar from "../CommonNavbar/CommonNavbar.js";
@@ -155,7 +155,7 @@ function MemberProfile() {
             <div id="top-mp">
               <div id="member-pfp-cont">
                 {member && (
-                  <img id="member-pfp" onClick={()=>{handleClickOpen(`${url}/${member.pfpPath}`)}}  src={`${url}/${member.pfpPath}`} />
+                  <img id="member-pfp" onClick={()=>{handleClickOpen(`${member.pfpPath}`)}}  src={`${member.pfpPath}`} />
                 )}
               </div>
 
@@ -185,7 +185,7 @@ function MemberProfile() {
                     ref={likeButton}
                     onClick={handleLikeProfile}
                     style={{
-                      fontSize: "72px",
+                      fontSize: "3em",
                       color: "gray",
                       cursor: "pointer",
                     }}
@@ -206,7 +206,7 @@ function MemberProfile() {
                   <span
                     className="Like-Req-btn"
                     ref={requestBtn}
-                    style={{ color: "gray", cursor: "pointer" }}
+                    style={{ color: "gray", cursor: "pointer",fontSize:"3em" }}
                     onClick={handleSendConnectionRequest}
                   >
                     <i className="fa-solid fa-users-rays"></i>
@@ -245,7 +245,7 @@ function MemberProfile() {
                 {member &&
                   member.picsPaths.length !== 0 &&
                   member.picsPaths.map((path) => (
-                    <img src={`${url}/${path}`} onClick={()=>{handleClickOpen(`${url}/${path}`)}} />
+                    <img src={`${path}`} onClick={()=>{handleClickOpen(`${path}`)}} />
 
                   ))}
               </div>

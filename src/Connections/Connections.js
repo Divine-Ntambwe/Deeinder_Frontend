@@ -132,7 +132,7 @@ const ConnectionRequests = () => {
                     button2={
                       connection.hasAccepted ? "Remove" : "Cancel Request"
                     }
-                    img={`${url}/${
+                    img={`${
                       allMembers.find((person) => {
                         return person.username === connection.recieverUsername;
                       }).pfpPath
@@ -162,7 +162,7 @@ const ConnectionRequests = () => {
                     button2={
                       connection.hasAccepted ? "Remove" : "Remove Request"
                     }
-                    img={`${url}/${
+                    img={`${
                       allMembers.find((person) => {
                         return person.username === connection.senderUsername;
                       }).pfpPath
