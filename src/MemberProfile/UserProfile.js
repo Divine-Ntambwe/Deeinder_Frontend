@@ -465,7 +465,7 @@ function UserProfile() {
 
         <div id="top-mp">
           <div id="member-pfp-cont">
-            {member && <img id="member-pfp" src={`${url}/${member.pfpPath}`} />}
+            {member && <img id="member-pfp" src={`${member.pfpPath}`} />}
           </div>
 
           <div id="name-desc-likes-connec">
@@ -516,7 +516,7 @@ function UserProfile() {
           <div class="images-container">
             {member&&
               member.picsPaths.length !== 0 &&
-              member.picsPaths.map((path) => <img onClick={()=>{handleClickOpen(`${url}/${path}`)}} src={`${url}/${path}`} />)}
+              member.picsPaths.map((path) => <img onClick={()=>{handleClickOpen(`${path}`)}} src={`${path}`} />)}
             <AddPhotoAlternateIcon
               onClick={() => {
                 pictureInput.current.click();

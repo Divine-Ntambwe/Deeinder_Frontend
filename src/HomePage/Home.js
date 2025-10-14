@@ -200,8 +200,8 @@ function Home() {
                 <div key={member.username} className="preview-profile">
                   <img
                     alt={`a picture of ${member.username}`}
-                    src={"https://deeinder-backend.onrender.com/" + member.pfpPath}
-                  />
+                    src={`${url}/${member.pfpPath}`}
+                  /> 
                   <h3>
                     {member.username}, {member.age}
                   </h3>
