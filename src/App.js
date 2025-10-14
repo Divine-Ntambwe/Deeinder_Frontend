@@ -30,9 +30,7 @@ function App() {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || ""
   );
-
-  const url = "http://localhost:8000"
-  //  "https://deeinder-backend.onrender.com";
+  const url = "https://deeinder-backend.onrender.com";
 
   function ProtectedRoutes({ element }) {
     if (!user) {
