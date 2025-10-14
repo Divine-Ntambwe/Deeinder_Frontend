@@ -9,3 +9,7 @@ input {
   /* display: block; */
 
 }
+
+body {
+   overflow-x: hidden !important;
+}

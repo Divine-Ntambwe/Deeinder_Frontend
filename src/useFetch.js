@@ -1,137 +1,170 @@
-import { useState,useContext } from "react";
-import { UserContext } from './App';
+import { useState, useContext } from "react";
+import { UserContext } from "./App";
 
-
-const useFetch = (url,body,toDo) => {
+const useFetch = (url, body, toDo) => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const {user, setUser} = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
-  async function get(toDo = ()=>{}) {
-    setLoading(true)
-     try { 
-     const res = await fetch(url);
+  async function get(toDo = () => {}) {
+    setLoading(true);
+    try {
+       setLoading(true);
+      const res = await fetch(url);
+
      const data = await res.json();
-     setLoading(false)
-     setResult(data);
-     if (res.ok){
-      toDo(data)
-      console.log("chat?")
-     }
-     } catch(e) {
-      console.error(e)
-     }
-  
-  }
-
-  async function postMedia(body,toDo) {
-     try { 
-      setLoading(true);
-     const res = await fetch(url,{
-       method: "POST",
-       body: body
-     });
-       
-     const data = await res.json();
-     setLoading(false);
-     setResult(data);
-
+      setLoading(false);
+      setResult(data);
       if (res.ok) {
-       toDo(data)
-      }
-     } catch(e) {
-      console.error(e)
-     }
-  }
-
-  async function post(body = {},toDo = ()=>{}) {
-     try { 
-      console.log(body)
-      setLoading(true);
-     const res = await fetch(url,{
-       method: "POST",
-       headers: {"Content-Type": "application/json"},
-       body: JSON.stringify(body)
-     });
-       
-     const data = await res.json();
-     setLoading(false);
-     setResult(data);
-
-      if (data.message) {
         toDo(data);
+      } else {
+        setLoading(false);
+        setError(data.error);
       }
-     } catch(e) {
-      console.error(e)
-     }
+    } catch (e) {
+      console.error(e);
+      setError("Network Error please try again later");
+      setLoading(false);
+    }
   }
 
-  async function put(body = {},toDo = ()=>{}) {
-    try { 
+  async function postMedia(body, toDo) {
+    try {
       setLoading(true);
-     const res = await fetch(url,{
-       method: "PUT",
-       headers: {"Content-Type": "application/json"},
-       body: JSON.stringify(body)
-     });
-       
-     const data = await res.json();
-     setLoading(false);
-     setResult(data);
+      const res = await fetch(url, {
+        method: "POST",
+        body: body,
+      });
 
+      const data = await res.json();
+      setLoading(false);
+      setResult(data);
       if (res.ok) {
-        toDo();
+        toDo(data);
+      } else {
+        setLoading(false);
+        setError(data.error);
       }
-     } catch(e) {
-      console.error(e)
-     }
+    } catch (e) {
+      console.error(e);
+      setError("Network Error please try again later");
+      setLoading(false);
+    }
   }
 
-  async function deleteAPI(body = {},toDo = ()=>{}) {
-    try { 
+  async function post(body = {}, toDo = () => {}) {
+    try {
+      console.log(body);
       setLoading(true);
-     const res = await fetch(url,{
-       method: "DELETE",
-       headers: {"Content-Type": "application/json"},
-       body: JSON.stringify(body)
-     });
-       
-     const data = await res.json();
-     setLoading(false);
-     setResult(data);
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
 
+      const data = await res.json();
+      setLoading(false);
+      setResult(data);
       if (res.ok) {
-        toDo();
+        toDo(data);
+      } else {
+        setLoading(false);
+        setError(data.error);
       }
-     } catch(e) {
-      console.error(e)
-     }
+    } catch (e) {
+      console.error(e);
+      setError("Network Error please try again later");
+      setLoading(false);
+    }
   }
 
-  async function putMedia(body,toDo) {
-  
-     try { 
+  async function put(body = {}, toDo = () => {}) {
+    try {
       setLoading(true);
-     const res = await fetch(url,{
-       method: "PUT",
-       body: body
-     });
-       
-     const data = await res.json();
-     setLoading(false);
-     setResult(data);
-      
+      const res = await fetch(url, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+      setLoading(false);
+      setResult(data);
       if (res.ok) {
-        toDo(data)
+        toDo(data);
+      } else {
+        setLoading(false);
+        setError(data.error);
       }
-     } catch(e) {
-      console.error("err",e)
-     }
+    } catch (e) {
+      console.error(e);
+      setError("Network Error please try again later");
+      setLoading(false);
+    }
   }
 
- 
-  return { get,postMedia, post ,deleteAPI, put, putMedia, result,setResult, error,loading };
+  async function deleteAPI(body = {}, toDo = () => {}) {
+    try {
+      setLoading(true);
+      const res = await fetch(url, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+      setLoading(false);
+      setResult(data);
+      if (res.ok) {
+        toDo(data);
+      } else {
+        setLoading(false);
+        setError(data.error);
+      }
+    } catch (e) {
+      console.error(e);
+      setError("Network Error please try again later");
+      setLoading(false);
+    }
+  }
+
+  async function putMedia(body, toDo) {
+    try {
+      setLoading(true);
+      const res = await fetch(url, {
+        method: "PUT",
+        body: body,
+      });
+
+      const data = await res.json();
+      setLoading(false);
+      setResult(data);
+      if (res.ok) {
+        toDo(data);
+      } else {
+        setLoading(false);
+        setError(data.error);
+      }
+    } catch (e) {
+      console.error(e);
+      setError("Network Error please try again later");
+      setLoading(false);
+    }
+  }
+
+  return {
+    get,
+    postMedia,
+    post,
+    deleteAPI,
+    put,
+    putMedia,
+    result,
+    setResult,
+    error,
+    loading,
+  };
 };
 
 export default useFetch;

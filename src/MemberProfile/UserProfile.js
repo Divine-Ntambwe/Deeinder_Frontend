@@ -512,6 +512,20 @@ function UserProfile() {
         </div>
 
         <div id="bottom-mp">
+          <p>About</p>
+          <div className="aboutMe">
+            {member &&
+              Object.keys(member.aboutMe).map((k) => (
+                <span className="about-prop">
+                  {k}:{" "}
+                  <span className="about-val">
+                    {typeof member.aboutMe[k] == "string"
+                      ? member.aboutMe[k]
+                      : member.aboutMe[k].toString()}
+                  </span>
+                </span>
+              ))}
+          </div>
           <p>Photos</p>
 
           <div class="images-container">
@@ -541,20 +555,6 @@ function UserProfile() {
             />
           </div>
 
-          <p>About</p>
-          <div className="aboutMe">
-            {member &&
-              Object.keys(member.aboutMe).map((k) => (
-                <span className="about-prop">
-                  {k}:{" "}
-                  <span className="about-val">
-                    {typeof member.aboutMe[k] == "string"
-                      ? member.aboutMe[k]
-                      : member.aboutMe[k].toString()}
-                  </span>
-                </span>
-              ))}
-          </div>
         </div>
       </div>
     </div>

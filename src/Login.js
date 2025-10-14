@@ -13,7 +13,7 @@ function Login() {
   const [password,setPassword] = useState("")
   const nav = useNavigate();
   const {url,setUser} = useContext(UserContext)
-  const {post,result,loading} = useFetch(`${url}/Login`);
+  const {post,result,loading,error} = useFetch(`${url}/Login`);
    
   
   function handleLogin() {
@@ -46,7 +46,7 @@ function Login() {
 
              <label htmlFor="login-password">Password:</label>
              <input required id="login-password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-            { result && <p id="display-error">{result.error}</p>}
+           
 
          
              <IconButton style={{ width: '100%',
@@ -64,6 +64,7 @@ function Login() {
 
              
           </form>
+           {<p id="display-error">{error}</p>}
           <p>Don't have an account? <Link to="/SignUp">Sign Up</Link></p>
 
         </div>

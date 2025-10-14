@@ -71,7 +71,7 @@ function SignUp() {
      
    <form method="POST" action={url} encType="multipart/form-data" onSubmit={handleSignUp}>
       <h2 id="signup-heading">Sign Up</h2>
-      {result &&  <p id="display-error">{result.error}</p>}
+      
         
       <div id="signup-form">
         
@@ -98,7 +98,6 @@ function SignUp() {
           setPfp(imgUrl)
 
          }}
-        // required
         name='pfp'
         id='pfp'
         
@@ -163,6 +162,7 @@ function SignUp() {
 
          
       </div>
+      {result &&  <p id="display-error">{result.error}</p>}
       
       
        <IconButton style={{ width: '300px',

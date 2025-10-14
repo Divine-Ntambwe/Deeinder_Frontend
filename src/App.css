@@ -6,13 +6,13 @@
 }
 
 #splashBG {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 #splash-screen {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 #Login,
@@ -21,10 +21,10 @@
   min-height: 100vh;
   padding-bottom: 1em !important;
    background-color: #350b69;
-   /* overflow-x: hidden; */
-}
-
-.main-heading {
+  }
+  
+  
+  .main-heading {
   font-size: 2rem; /* medium size */
   font-weight: normal;
   color: gray;
@@ -35,6 +35,7 @@
 
 .main-bg {
   background-color: #350b69;
+ 
   /* min-height: 100vh; */
 }
 
@@ -90,6 +91,7 @@
 #display-error {
   color: red;
   text-align: center;
+  margin: 10px 0;
 }
 
 #signup-form {
