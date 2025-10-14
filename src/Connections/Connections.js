@@ -14,13 +14,23 @@ const ConnectionRequestItem = ({ name, button1, button2, img, functions }) => (
     <div className={styles.buttons}>
       <button
         onClick={button1 === "Message" ? functions[0] : functions[1]}
-        className={`${styles.btn} ${button1 === "Pending" ? styles.disabled : ""}`}
+        className={`${styles.btn} ${
+          button1 === "Pending" ? styles.disabled : ""
+        }`}
       >
         {button1}
       </button>
       <button
-        onClick={button2 === "Remove" ? functions[3] : button2 === "Remove Request"?functions[4]:functions[2]}
-        className={`${styles.btn} ${button2 === "Pending" ? styles.disabled : ""}`}
+        onClick={
+          button2 === "Remove"
+            ? functions[3]
+            : button2 === "Remove Request"
+            ? functions[4]
+            : functions[2]
+        }
+        className={`${styles.btn} ${
+          button2 === "Pending" ? styles.disabled : ""
+        }`}
       >
         {button2}
       </button>
@@ -32,7 +42,7 @@ const ConnectionRequests = () => {
   const { user, url } = useContext(UserContext);
   const nav = useNavigate();
   const { get } = useFetch(`${url}/connectionRequests/${user.username}`);
-  const { allMembers } = useContext(members);
+  const { allMembers,handleSearch } = useContext(members);
   const { put } = useFetch(`${url}/acceptedConnectionRequest/${user.username}`);
   const { deleteAPI: removeRequest } = useFetch(
     `${url}/removeConnectionRequest`
@@ -40,13 +50,11 @@ const ConnectionRequests = () => {
   const { deleteAPI: cancelRequest } = useFetch(
     `${url}/cancelConnectionRequest`
   );
-  const {handleDisplayChat} = useContext(Messaging)
-  
+  const { handleDisplayChat } = useContext(Messaging);
 
   function handleGoToMessage(member) {
     nav("/messages");
-    handleDisplayChat(member)
-
+    handleDisplayChat(member);
   }
 
   function handleRemoveConnectionRecieved(senderUsername) {
@@ -56,38 +64,59 @@ const ConnectionRequests = () => {
   }
 
   function handleRemoveConnectionSent(recieverUsername) {
-    console.log("IIIII")
-    removeRequest({ senderUsername:user.username, recieverUsername }, () => {
+    removeRequest({ senderUsername: user.username, recieverUsername }, () => {
       setFetch(fetch + 1);
     });
   }
 
   function handleAcceptConnection(senderUsername) {
-    console.log(user.username)
-    put({ senderUsername }, () => { 
+    console.log(user.username);
+    put({ senderUsername }, () => {
       setFetch(fetch + 1);
     });
   }
 
   function handleCancelRequest(recieverUsername) {
-    cancelRequest({ senderUsername:user.username, recieverUsername }, () => {
+    cancelRequest({ senderUsername: user.username, recieverUsername }, () => {
       setFetch(fetch + 1);
     });
   }
 
-  function handleRemoveRequest(senderUsername){
-    cancelRequest({ senderUsername, recieverUsername:user.username }, () => {
+  function handleRemoveRequest(senderUsername) {
+    cancelRequest({ senderUsername, recieverUsername: user.username }, () => {
       setFetch(fetch + 1);
     });
   }
 
   const [connections, setConnections] = useState();
+  const [allConnections,setAllConnections] = useState();
   const [fetch, setFetch] = useState(1);
   useEffect(() => {
     get((d) => {
       setConnections(d);
+      setAllConnections(d);
     });
   }, [fetch]);
+
+  function handleSearchConections(searchText,category){
+    
+    const searchedMembers =
+      searchText === ""
+        ? allConnections
+        : allConnections.filter(
+            (member) =>
+              member.recieverUsername.toLowerCase().includes(searchText) ||
+              member.senderUsername.toLowerCase().includes(searchText)
+          );
+    category(searchedMembers)      
+  }
+  const [searchText, setSearchText] = useState("");
+  
+  const search = (e) => {
+    const value = e.target.value.toLowerCase();
+    // setSearchText(value);
+    handleSearchConections(value, setConnections);
+  };
 
   return (
     <>
@@ -95,13 +124,13 @@ const ConnectionRequests = () => {
         <CommonNavbar />
       </div>
       <div className={styles.container}>
+        <div className={styles.header}>
         <h1 className={styles.title}>Connection Requests</h1>
-        {/* <div className={styles.header}>
-          <div className={styles.tabs}>
+          {/* <div className={styles.tabs}>
             All | Accepted requests | Unaccepted requests | Pending
-          </div>
-          <input type="text" className={styles.search} placeholder="Search" />
-        </div> */}
+          </div> */}
+          <input type="text" className={styles.search} placeholder="Search" onChange={search} />
+        </div>
         <div className={styles.requestsList}>
           {connections &&
             allMembers &&
@@ -112,7 +141,9 @@ const ConnectionRequests = () => {
                     key={connection._id}
                     name={connection.recieverUsername}
                     functions={[
-                      ()=>{handleGoToMessage(connection.recieverUsername)},
+                      () => {
+                        handleGoToMessage(connection.recieverUsername);
+                      },
                       () => {
                         handleAcceptConnection(connection.senderUsername);
                       },
@@ -120,13 +151,11 @@ const ConnectionRequests = () => {
                         handleCancelRequest(connection.recieverUsername);
                       },
                       () => {
-                        handleRemoveConnectionSent(
-                          connection.recieverUsername
-                        );
+                        handleRemoveConnectionSent(connection.recieverUsername);
                       },
-                      ()=>{
-                        handleRemoveRequest(connection.senderUsername)
-                      }
+                      () => {
+                        handleRemoveRequest(connection.senderUsername);
+                      },
                     ]}
                     button1={connection.hasAccepted ? "Message" : "Pending"}
                     button2={
@@ -144,7 +173,9 @@ const ConnectionRequests = () => {
                     key={connection._id}
                     name={connection.senderUsername}
                     functions={[
-                      ()=>{handleGoToMessage(connection.senderUsername)},
+                      () => {
+                        handleGoToMessage(connection.senderUsername);
+                      },
                       () => {
                         handleAcceptConnection(connection.senderUsername);
                       },
@@ -152,11 +183,13 @@ const ConnectionRequests = () => {
                         handleCancelRequest(connection.recieverUsername);
                       },
                       () => {
-                        handleRemoveConnectionRecieved(connection.senderUsername);
+                        handleRemoveConnectionRecieved(
+                          connection.senderUsername
+                        );
                       },
-                      ()=>{
-                        handleRemoveRequest(connection.senderUsername)
-                      }
+                      () => {
+                        handleRemoveRequest(connection.senderUsername);
+                      },
                     ]}
                     button1={connection.hasAccepted ? "Message" : "Accept"}
                     button2={

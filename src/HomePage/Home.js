@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./Home.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { useState, useContext, useRef } from "react";
 import useFetch from "../useFetch";
@@ -22,10 +22,12 @@ function Home() {
   const [filterMembers, setFilterMembers] = useState([]);
   const [searching, setSearching] = useState(0);
   const homeHeader = useRef();
-  const homeSwiper = useRef();
+  const homeSwiper = useRef(),
+  exploreHeading = useRef(),
+  swiperContainer = useRef();
+  const nav = useNavigate()
 
   function handleSwipe(e) {
-    console.log("yoooooo");
     if (!homeSwiper.current) return;
     const swiper = homeSwiper.current.swiper;
     if (e.key === "ArrowRight") swiper.slideNext();
@@ -46,15 +48,19 @@ function Home() {
     searchInput.current.style.display = "inline";
     searchInput.current.focus();
     searchTextElement.current.style.display = "none";
-    homeHeader.current.style.display = "none";
+    homeSwiper.current.style.display = "none";
+    homeHeader.current.textContent = "Search Results";
+    exploreHeading.current.style.display = "none";
   }
 
   function handleSearchInputBlur() {
-    searchInput.current.style.display = "none";
-    searchTextElement.current.style.display = "inline";
+    // searchInput.current.style.display = "none";
+    // searchTextElement.current.style.display = "inline";
     setSearchText("");
     handleSearch("", setExploreMembers);
-    homeHeader.current.style.display = "block";
+    homeSwiper.current.style.display = "block";
+    homeHeader.current.textContent = "People You May Know";
+     exploreHeading.current.style.display = "block";
   }
 
   return (
@@ -101,18 +107,42 @@ function Home() {
 
       <div id="home-content"
       >
+
         <div
           className="home-header"
-          ref={homeHeader}
           >
-          <h2>People You May Know</h2>
+        <div className="home-headings">
+
+          <h2
+          ref={homeHeader}
+          >People You May Know</h2>
+          <a id="home-search" onClick={handleSearchClick}>
+              {/* <i className="fa-solid fa-magnifying-glass"></i> */}
+              <span ref={searchTextElement} id="search-text">
+                
+              </span>
+
+              <input
+                id="search"
+                ref={searchInput}
+                value={searchText}
+                onChange={search}
+                onBlur={handleSearchInputBlur}
+                placeHolder="Search"
+                className="search"
+              />
+            </a>
+        </div>
+          
           <br />
           <div
+          ref={swiperContainer}
           tabIndex={0} // makes div focusable
-          onMouseEnter={(e) => {
-            e.target.focus();
+          onMouseOver={(e) => {
+            swiperContainer.current.focus();
+
           }}
-          onKeyDown={(e)=>{handleSwipe(e)}}
+          onKeyDown={(e)=>{handleSwipe(e);console.log("ppppp")}}
           style={{ outline: "none" }}
           >
 
@@ -142,7 +172,9 @@ function Home() {
             {exploreMembers &&
               exploreMembers.map((member) => (
                 <SwiperSlide>
-                  <div className="slides">
+                  <div className="slides"
+                  onClick={()=>{nav(`/MemberProfile/${member.username}`)}}
+                  >
                     <img src={`${member.pfpPath}`} />
                     <div className="swiper-details">
                       <h3>
@@ -163,7 +195,7 @@ function Home() {
           </div>
         </div>
         <br />
-        <h2>Explore Profiles</h2>
+        <h2 ref={exploreHeading}>Explore Profiles</h2>
         <br />
 
         <div id="explore">

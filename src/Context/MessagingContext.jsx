@@ -8,10 +8,12 @@ function MessagingContext({children}) {
   const { url, user } = useContext(UserContext);
   const { get: getMessages } = useFetch(`${url}/messages/${user.username}`);
   const [allMessages, setAllMessages] = useState();
-  const [messagedUsers, setMessagedUsers] = useState();
+  const [messagedUsers, setMessagedUsers] = useState(),
+  [allMessagedUsers,setAllMessagesUsers] = useState();
   const { allMembers } = useContext(members);
   const [currentChat, setCurrentChat] = useState("");
   const [newChat,setNewChat] = useState("")
+
 
      useEffect(() => {
         getMessages((d) => {
@@ -24,6 +26,7 @@ function MessagingContext({children}) {
             return name !== user.username;
           });
           setMessagedUsers([...new Set(users)]);
+          setAllMessagesUsers([...new Set(users)])
         
         });
       }, [currentChat,newChat]);
@@ -52,9 +55,21 @@ function MessagingContext({children}) {
     });
 
   }
+
+  function handleSearchMessagesUsers(searchText,category){
+    const searchedMembers =
+      searchText === ""
+        ? allMessagedUsers
+        : allMessagedUsers.filter(
+            (member) =>
+            
+              member.toLowerCase().includes(searchText) 
+          );
+    category(searchedMembers)      
+  }
   return (
     <div>
-        <Messaging.Provider value={{handleDisplayChat,allMessages,messagedUsers,currentChat,setCurrentChat,room,newChat,setNewChat}}>
+        <Messaging.Provider value={{handleSearchMessagesUsers,setMessagedUsers,handleDisplayChat,allMessages,messagedUsers,currentChat,setCurrentChat,room,newChat,setNewChat}}>
 
         {children}
         </Messaging.Provider>

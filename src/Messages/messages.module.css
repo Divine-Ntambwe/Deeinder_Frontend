@@ -1,7 +1,14 @@
 .container {
   display: flex;
-  height: 91vh;
+  height: 100%;
   background-color: #000000;
+}
+
+.messagesPage{
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .sidebar {
@@ -181,7 +188,7 @@ img {
 
   .sidebar {
     width: 100%;
-    min-height: 91.5vh;
+    min-height: 93.5vh;
   }
 
   .chat {

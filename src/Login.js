@@ -12,18 +12,20 @@ function Login() {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("")
   const nav = useNavigate();
-  const {url,setUser} = useContext(UserContext)
-  const {post,result,loading,error} = useFetch(`${url}/Login`);
+  const {url,setUser,setAuthUser} = useContext(UserContext)
+  const {postNoAuth,result,loading,error} = useFetch(`${url}/Login`);
    
   
   function handleLogin() {
   const cred = {email,password};
   
-  post(cred,(d)=>{
+  postNoAuth(cred,(d)=>{
     localStorage.setItem("user",JSON.stringify(d));
     
-    setUser(d)
+    setUser(d);
+    setAuthUser(btoa(`${d.email}:${d.password}`));
     nav('/Home');
+    window.location.reload();
    
   });
 

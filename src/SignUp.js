@@ -40,7 +40,7 @@ function SignUp() {
   let today = new Date() ;
   let todayDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2,"0")}-${(today.getDate()).toString().padStart(2,"0")}`
   
-  const {postMedia,result,loading} = useFetch(`${url}/signUp`);
+  const {postMediaNoAuth,result,loading} = useFetch(`${url}/signUp`);
   const {user, setUser} = useContext(UserContext);
 
 
@@ -55,7 +55,7 @@ function SignUp() {
 
 
 
-  postMedia(formData,(d)=>{
+  postMediaNoAuth(formData,(d)=>{
     localStorage.setItem("user",JSON.stringify(d));
     setUser(d)
     nav('/Home');

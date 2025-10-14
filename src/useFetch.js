@@ -5,15 +5,17 @@ const useFetch = (url, body, toDo) => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, authUser } = useContext(UserContext);
 
   async function get(toDo = () => {}) {
     setLoading(true);
     try {
-       setLoading(true);
-      const res = await fetch(url);
+      setLoading(true);
+      const res = await fetch(url, {
+        headers: { authorization: `basic ${authUser}` },
+      });
 
-     const data = await res.json();
+      const data = await res.json();
       setLoading(false);
       setResult(data);
       if (res.ok) {
@@ -30,6 +32,31 @@ const useFetch = (url, body, toDo) => {
   }
 
   async function postMedia(body, toDo) {
+    try {
+      setLoading(true);
+      const res = await fetch(url, {
+        method: "POST",
+        body: body,
+        headers: { authorization: `basic ${authUser}` },
+      });
+
+      const data = await res.json();
+      setLoading(false);
+      setResult(data);
+      if (res.ok) {
+        toDo(data);
+      } else {
+        setLoading(false);
+        setError(data.error);
+      }
+    } catch (e) {
+      console.error(e);
+      setError("Network Error please try again later");
+      setLoading(false);
+    }
+  }
+
+  async function postMediaNoAuth(body, toDo) {
     try {
       setLoading(true);
       const res = await fetch(url, {
@@ -54,6 +81,35 @@ const useFetch = (url, body, toDo) => {
   }
 
   async function post(body = {}, toDo = () => {}) {
+    try {
+      console.log(body);
+      setLoading(true);
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+           authorization: `basic ${authUser}`,
+        },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+      setLoading(false);
+      setResult(data);
+      if (res.ok) {
+        toDo(data);
+      } else {
+        setLoading(false);
+        setError(data.error);
+      }
+    } catch (e) {
+      console.error(e);
+      setError("Network Error please try again later");
+      setLoading(false);
+    }
+  }
+
+  async function postNoAuth(body = {}, toDo = () => {}) {
     try {
       console.log(body);
       setLoading(true);
@@ -84,8 +140,9 @@ const useFetch = (url, body, toDo) => {
       setLoading(true);
       const res = await fetch(url, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",authorization: `basic ${authUser}` },
         body: JSON.stringify(body),
+        
       });
 
       const data = await res.json();
@@ -109,8 +166,9 @@ const useFetch = (url, body, toDo) => {
       setLoading(true);
       const res = await fetch(url, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",authorization: `basic ${authUser}` },
         body: JSON.stringify(body),
+        
       });
 
       const data = await res.json();
@@ -135,6 +193,7 @@ const useFetch = (url, body, toDo) => {
       const res = await fetch(url, {
         method: "PUT",
         body: body,
+        headers: { authorization: `basic ${authUser}` },
       });
 
       const data = await res.json();
@@ -160,6 +219,8 @@ const useFetch = (url, body, toDo) => {
     deleteAPI,
     put,
     putMedia,
+    postNoAuth,
+    postMediaNoAuth,
     result,
     setResult,
     error,

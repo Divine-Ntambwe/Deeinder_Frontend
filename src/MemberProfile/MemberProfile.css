@@ -119,14 +119,14 @@
 
 .images-container {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 345px);
   gap: 15px 20px;
   margin: 10px 0 30px 10px;
 }
 
 .images-container img {
   width: 100%;
-  height: 150px;
+  height: 550px;
   border-radius: 15px;
   object-fit: cover;
   cursor: pointer;
@@ -302,9 +302,12 @@
   }
 
   #member-pfp {
-    height: 20vh;
-    width: 20vh;
+    height: 40vh !important;
+    width: 40vh !important;
     margin: 0 auto;
+  }
+  .interests {
+    font-size: 0.9em;
   }
 
   .name-age {
@@ -323,6 +326,10 @@
   .images-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px 15px;
+  }
+
+  .images-container img {
+    height: 500px;
   }
 
   .aboutMe {

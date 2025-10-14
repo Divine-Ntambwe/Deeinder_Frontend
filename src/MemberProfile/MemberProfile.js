@@ -140,9 +140,9 @@ function MemberProfile() {
               {/* <DialogTitle>{"Use Google's location service?"}</DialogTitle> */}
               
               <DialogContent 
-              sx={{backgroundColor:"black"}}
+                 sx={{backgroundColor:"black",overflow:"hidden",padding:"0 10px"}}
               >
-               <img style={{width:"850px",height:"550px",objectFit:"contain"}} src={viewingPicture}/>
+               <img style={{width:"100%",height:"550px",objectFit:"contain"}} src={viewingPicture}/>
               </DialogContent>
               
             </Dialog>

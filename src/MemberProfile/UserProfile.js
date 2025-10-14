@@ -17,6 +17,7 @@ import {
   gridColumn,
   height,
   justifyContent,
+  padding,
   textAlign,
 } from "@mui/system";
 import Button from "@mui/material/Button";
@@ -161,10 +162,12 @@ function UserProfile() {
   }
   const [viewingPicture,setViewingPicture] = useState("")
   const [open, setOpen] = React.useState(false);
+  const [viewPfp,setViewPfp] = useState(false)
 
-  const handleClickOpen = (path) => {
+  const handleClickOpen = (path,view = false) => {
     setOpen(true);
     setViewingPicture(path)
+    setViewPfp(view)
   };
 
   const handleClose = () => {
@@ -183,18 +186,18 @@ function UserProfile() {
         aria-describedby="alert-dialog-slide-description"
         fullWidth={true}
         maxWidth={"md"}
-        // sx={{width:"500px"}}
+       
       >
         <DialogActions  sx={{backgroundColor:"black"}}>
-          <Button sx={{color:"#cb6ce6"}} onClick={handleRemovePicture}>Remove Picture</Button>
+          {!viewPfp && <Button sx={{color:"#cb6ce6"}} onClick={handleRemovePicture}>Remove Picture</Button>}
           <Button sx={{color:"#cb6ce6"}} onClick={handleClose}>Cancel</Button>
         </DialogActions>
         {/* <DialogTitle>{"Use Google's location service?"}</DialogTitle> */}
         
         <DialogContent 
-        sx={{backgroundColor:"black"}}
+        sx={{backgroundColor:"black",overflow:"hidden",padding:"0 10px"}}
         >
-         <img style={{width:"850px",height:"550px",objectFit:"contain"}} src={viewingPicture}/>
+         <img style={{width:"100%",height:"550px",objectFit:"contain"}} src={viewingPicture}/>
         </DialogContent>
         
       </Dialog>
@@ -455,9 +458,9 @@ function UserProfile() {
           <p
             className="edit-prof button"
             onClick={() => {
-              localStorage.clear();
               nav("/Login");
-              window.location.reload();
+              localStorage.clear();
+              
             }}
           >
             <LogoutIcon style={{ fontSize: "2.5em" }} />{" "}
@@ -466,7 +469,7 @@ function UserProfile() {
 
         <div id="top-mp">
           <div id="member-pfp-cont">
-            {member && <img id="member-pfp" src={`${member.pfpPath}`} />}
+            {member && <img  onClick={()=>{handleClickOpen(`${member.pfpPath}`,true)}}id="member-pfp" src={`${member.pfpPath}`} />}
           </div>
 
           <div id="name-desc-likes-connec">

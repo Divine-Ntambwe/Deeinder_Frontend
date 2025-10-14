@@ -21,7 +21,7 @@ import Messages from "./Messages/Messages";
 import MessagingContext from "./Context/MessagingContext";
 import io from "socket.io-client"
 
-export const socket = io.connect("https://deeinder-backend.onrender.com")
+export const socket = io.connect("http://localhost:8000")
 
 export const UserContext = React.createContext();
 
@@ -30,7 +30,10 @@ function App() {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || ""
   );
-  const url = "https://deeinder-backend.onrender.com";
+  const [authUser,setAuthUser] = useState(btoa(`${user.email}:${user.password}`))
+  const url = "http://localhost:8000"
+  // "https://deeinder-backend.onrender.com";
+  // console.log(authUser)
 
   function ProtectedRoutes({ element }) {
     if (!user) {
@@ -44,7 +47,7 @@ function App() {
     <Router>
       <div className="App">
         <div className="content">
-          <UserContext.Provider value={{ user, setUser, url }}>
+          <UserContext.Provider value={{ setAuthUser,user, setUser, url,authUser }}>
             <MembersContext>
               <MessagingContext>
 
