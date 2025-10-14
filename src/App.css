@@ -21,6 +21,7 @@
   min-height: 100vh;
   padding-bottom: 1em !important;
    background-color: #350b69;
+   /* overflow-x: hidden; */
 }
 
 .main-heading {

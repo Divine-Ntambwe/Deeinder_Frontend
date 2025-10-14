@@ -26,8 +26,8 @@ function SignUp() {
   const [email,setEmail] = useState("");
   const [fullName,setFullName] = useState("");
   const [username,setUsername] = useState("");
-  const [password,setPassword] = useState("12345678-L");
-  const [confirmPassword,setConfirmPassword] = useState("12345678-L");
+  const [password,setPassword] = useState("");
+  const [confirmPassword,setConfirmPassword] = useState("");
   const [gender,setGender] = useState("");
   const [dob,setDob] = useState("");
   const [pfp,setPfp] =useState('emptyPfp.png')

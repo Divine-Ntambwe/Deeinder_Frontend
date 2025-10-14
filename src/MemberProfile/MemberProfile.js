@@ -15,6 +15,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
+import IconButton from '@mui/material/IconButton';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -40,7 +41,7 @@ function MemberProfile() {
   );
 
   const noPhotoText = useRef();
-  const { post: postConnection } = useFetch(
+  const { post: postConnection,loading:postConnectionLoading } = useFetch(
     `${url}/connectionRequest/${user.username}/${memberUsername}`
   );
   const requestBtn = useRef();
@@ -203,14 +204,19 @@ function MemberProfile() {
                     </p>
                     <span>{member.connections} connections</span>
                   </div>
+                  <IconButton
+                    onClick={handleSendConnectionRequest}
+                  >
+
                   <span
                     className="Like-Req-btn"
                     ref={requestBtn}
                     style={{ color: "gray", cursor: "pointer",fontSize:"3em" }}
-                    onClick={handleSendConnectionRequest}
+                    
                   >
                     <i className="fa-solid fa-users-rays"></i>
                   </span>
+                  </IconButton>
                 </div>
               </div>
 
