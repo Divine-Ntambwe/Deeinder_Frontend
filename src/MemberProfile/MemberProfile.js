@@ -204,19 +204,18 @@ function MemberProfile() {
                     </p>
                     <span>{member.connections} connections</span>
                   </div>
-                  <IconButton
-                    onClick={handleSendConnectionRequest}
-                  >
+                
 
                   <span
+                    onClick={handleSendConnectionRequest}
                     className="Like-Req-btn"
                     ref={requestBtn}
                     style={{ color: "gray", cursor: "pointer",fontSize:"3em" }}
                     
+                    
                   >
                     <i className="fa-solid fa-users-rays"></i>
                   </span>
-                  </IconButton>
                 </div>
               </div>
 
