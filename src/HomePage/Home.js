@@ -56,11 +56,13 @@ function Home() {
   function handleSearchInputBlur() {
     // searchInput.current.style.display = "none";
     // searchTextElement.current.style.display = "inline";
-    setSearchText("");
-    handleSearch("", setExploreMembers);
-    homeSwiper.current.style.display = "block";
     homeHeader.current.textContent = "People You May Know";
-     exploreHeading.current.style.display = "block";
+    exploreHeading.current.style.display = "block";
+    setTimeout(()=>{
+      setSearchText("");
+      handleSearch("", setExploreMembers);
+      homeSwiper.current.style.display = "block"
+    },300)
   }
 
   return (

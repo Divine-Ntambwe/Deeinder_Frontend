@@ -1,50 +1,56 @@
-import React, { useContext, useEffect, useState,useRef } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import styles from "./messages.module.css";
 import CommonNavbar from "../CommonNavbar/CommonNavbar";
 import useFetch from "../useFetch";
-import { UserContext,socket } from "../App";
+import { UserContext, socket } from "../App";
 import { members } from "../Context/MembersContext";
 import { Messaging } from "../Context/MessagingContext";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Messages = () => {
-  const {messagedUsers,setMessagedUsers, currentChat,setCurrentChat,handleDisplayChat,room,newChat,setNewChat,handleSearchMessagesUsers} = useContext(Messaging)
+  const {
+    messagedUsers,
+    setMessagedUsers,
+    currentChat,
+    setCurrentChat,
+    handleDisplayChat,
+    room,
+    newChat,
+    setNewChat,
+    handleSearchMessagesUsers,
+  } = useContext(Messaging);
 
   const { url, user } = useContext(UserContext);
   const { allMembers } = useContext(members);
   const [messageSent, setMessageSent] = useState();
-  const [messageRecieved,setMessageRecieved] = useState();
-  const underLastText = useRef()
-  const chat = useRef()
-  const sidebar = useRef()
-  useEffect(()=>{
-    socket.on("recieve_message",(data)=>{
+  const [messageRecieved, setMessageRecieved] = useState();
+  const underLastText = useRef();
+  const chat = useRef();
+  const sidebar = useRef();
+  useEffect(() => {
+    socket.on("recieve_message", (data) => {
+      setMessageRecieved(data);
+    });
+  }, [socket]);
+  useEffect(() => {
+    underLastText.current?.scrollIntoView({ behavior: "smooth" });
+    chat.current.style.display = "flex";
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      sidebar.current.style.display = "none";
+    }
+  }, []);
+  underLastText.current?.scrollIntoView({ behavior: "smooth" });
 
-        setMessageRecieved(data)
-    })
+  useEffect(() => {
+    if (currentChat && messageRecieved && room === messageRecieved.room) {
+      setCurrentChat({
+        ...currentChat,
+        messages: [...currentChat.messages, messageRecieved],
+      });
+    }
+  }, [messageRecieved]);
 
-    
-  },[socket])
-  useEffect(()=>{
-        underLastText.current?.scrollIntoView({ behavior: "smooth" });
-  },[])
-   underLastText.current?.scrollIntoView({ behavior: "smooth" });
-  
-  useEffect(()=>{
-  
-  if (currentChat && messageRecieved && room === messageRecieved.room){
-    setCurrentChat({
-   ...currentChat,
-   messages: [...currentChat.messages, messageRecieved],
-  });
-}
-
-  
-
-
-  },[messageRecieved])
-
-  const {post:sendMessage,data,error} = useFetch(`${url}/sendAMessage`)
+  const { post: sendMessage, data, error } = useFetch(`${url}/sendAMessage`);
   async function handleSendAMessage() {
     const newMessage = {
       senderId: user.username,
@@ -52,10 +58,10 @@ const Messages = () => {
       timeSent: new Date(),
       message: btoa(messageSent),
     };
-   
+
     sendMessage(newMessage);
-    if (error) return alert("Error No Network")
-    await socket.emit("send_message",{...newMessage,room})
+    if (error) return alert("Error No Network");
+    await socket.emit("send_message", { ...newMessage, room });
 
     setCurrentChat({
       ...currentChat,
@@ -64,7 +70,7 @@ const Messages = () => {
     setMessageSent("");
   }
 
-   const search = (e) => {
+  const search = (e) => {
     const value = e.target.value.toLowerCase();
     // setSearchText(value);
     handleSearchMessagesUsers(value, setMessagedUsers);
@@ -76,27 +82,30 @@ const Messages = () => {
         <CommonNavbar />
       </div>
       <div className={styles.container}>
-        <div className={styles.sidebar}  ref={sidebar}>
+        <div className={styles.sidebar} ref={sidebar}>
           <h2 className={styles.title}>Messages</h2>
-          <input style={{width:"100%"}}type="text" className="search" placeholder="Search" onChange={search} />
-          <br/>
-          <br/>
+          <input
+            style={{ width: "100%" }}
+            type="text"
+            className="search"
+            placeholder="Search"
+            onChange={search}
+          />
+          <br />
+          <br />
           {messagedUsers &&
             allMembers &&
             messagedUsers.map((user, index) => (
               <div
-              key={index}
-              className={styles.user}
-              onClick={() => {
-                handleDisplayChat(user);
-                chat.current.style.display = "flex"
-                // alert(sidebar.current)
-                if (window.matchMedia("(max-width: 768px)").matches){
-                    
-                  sidebar.current.style.display = "none"
-                }
-                
-              }}
+                key={index}
+                className={styles.user}
+                onClick={() => {
+                  handleDisplayChat(user);
+                  chat.current.style.display = "flex";
+                  if (window.matchMedia("(max-width: 768px)").matches) {
+                    sidebar.current.style.display = "none";
+                  }
+                }}
               >
                 <img
                   src={`${
@@ -117,12 +126,12 @@ const Messages = () => {
               <div className={styles.chatHeader}>
                 <div className={styles.chatHeaderInfo}>
                   <ArrowBackIcon
-                  className={styles.back}
-                  style={{paddingRight:"5px",fontSize:"2em"}}
-                  onClick={()=>{
-                    chat.current.style.display = "none"
-                    sidebar.current.style.display = "block"
-                  }}
+                    className={styles.back}
+                    style={{ paddingRight: "5px", fontSize: "2em" }}
+                    onClick={() => {
+                      chat.current.style.display = "none";
+                      sidebar.current.style.display = "block";
+                    }}
                   />
                   <img
                     src={currentChat.pfp}
@@ -145,8 +154,10 @@ const Messages = () => {
                         : styles.otherMessage
                     }`}
                   >
-                    <div className={styles.messageText}>{atob(msg.message)||msg.message}</div>
-                    <div ref={underLastText}/>
+                    <div className={styles.messageText}>
+                      {atob(msg.message) || msg.message}
+                    </div>
+                    <div ref={underLastText} />
                   </div>
                 ))}
               </div>

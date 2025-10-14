@@ -219,6 +219,18 @@
   #genders input {
   margin: -10px 12px 20px 0;
 }
+#splashBG {
+  width: 100%;
+  height: 40vh;
+  object-fit: fill;
+}
+
+#splash-screen {
+  overflow: hidden !important;
+  background-color:#350b69;
+  height: 85vh;
+}
+
 }
 
 @media (max-width: 480px) {

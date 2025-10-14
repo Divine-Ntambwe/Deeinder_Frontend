@@ -1,4 +1,4 @@
-.custom-bg {
+/* .custom-bg {
   background-color: #4B0082;
 }
 
@@ -104,4 +104,145 @@
   background-color: #6b7280;
   color: #9ca3af;
   cursor: not-allowed;
+} */
+
+.custom-bg {
+  background-color: #4B0082;
+}
+
+.disabledBtn {
+  background-color: #808080;
+  cursor: not-allowed;
+}
+
+.container {
+  background-color: black;
+  min-height: 100vh;
+  color: white;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tabs {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.search {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 300px;
+  max-width: 100%;
+}
+
+.search::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.requestsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.requestItem {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.profileImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.name {
+  flex: 1;
+  font-size: 16px;
+  color: white;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100px;
+  height: 50px;
+}
+
+.btn:not(.disabled) {
+  background-color: #a855f7;
+  color: white;
+}
+
+.btn:not(.disabled):hover {
+  background-color: #9333ea;
+}
+
+.btn.disabled {
+  background-color: #6b7280;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* 📱 Responsive */
+@media (max-width: 600px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .requestItem {
+    /* flex-direction: column; */
+    align-items:center;
+  }
+
+  .buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .btn {
+    flex: 1;
+    width: auto;
+    height: auto;
+  }
 }
