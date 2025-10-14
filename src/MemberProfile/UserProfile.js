@@ -35,6 +35,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
+import IconButton from '@mui/material/IconButton';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -106,6 +107,7 @@ function UserProfile() {
     putMedia: update,
     error,
     data,
+    loading:saveEditLoading
   } = useFetch(`${url}/UpdatemembersPersonalInfo/${user.username}`);
 
   function handleSave(e) {
@@ -208,12 +210,17 @@ function UserProfile() {
               <h2>Edit Profile</h2>
               {error && <p id="display-error">{error}</p>}
               <div>
+                <IconButton
+                loading={saveEditLoading}
+                >
                 <input
                   className="button"
                   value="save"
                   type="submit"
                   id="save-discard"
                 />
+
+                </IconButton>
                 <input
                   className="button"
                   onClick={() => {
@@ -347,6 +354,7 @@ function UserProfile() {
                     id="add-interest"
                     ref={addInterestInput}
                   />
+
                   <input
                     type="button"
                     className="add-interest-btn button"

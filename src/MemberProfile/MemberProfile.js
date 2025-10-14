@@ -30,10 +30,10 @@ function MemberProfile() {
   );
   const likeButton = useRef();
   const [likes, setLikes] = useState();
-  const { put: likeProfile } = useFetch(
+  const { put: likeProfile, loading:likeProfileLoading } = useFetch(
     `${url}/likeProfile/${user.username}/${memberUsername}`
   );
-  const { put: dislikeProfile } = useFetch(
+  const { put: dislikeProfile,loading:dislikeProfileLoading } = useFetch(
     `${url}/dislikeProfile/${user.username}/${memberUsername}`
   );
   const { get: getConnections, result: allConnections } = useFetch(
@@ -175,9 +175,9 @@ function MemberProfile() {
                     <p
                       style={{ cursor: "pointer" }}
                       className="purple-text"
-                      onClick={handleLikeProfile}
+                      
                     >
-                      Like Profile
+                      Likes
                     </p>
                     {member && <span>{`${likes}`} Likes</span>}
                   </div>
@@ -190,6 +190,7 @@ function MemberProfile() {
                       color: "gray",
                       cursor: "pointer",
                     }}
+                    loading={likeProfileLoading || dislikeProfileLoading}
                   />
                 </div>
 
@@ -198,24 +199,24 @@ function MemberProfile() {
                     <p
                       style={{ cursor: "pointer" }}
                       className="purple-text"
-                      onClick={handleSendConnectionRequest}
+                      
                     >
-                      Send Connection Request
+                      Connections
                     </p>
                     <span>{member.connections} connections</span>
                   </div>
-                
-
-                  <span
+                <IconButton
                     onClick={handleSendConnectionRequest}
                     className="Like-Req-btn"
                     ref={requestBtn}
                     style={{ color: "gray", cursor: "pointer",fontSize:"3em" }}
-                    
+                    loading={postConnectionLoading}
                     
                   >
                     <i className="fa-solid fa-users-rays"></i>
-                  </span>
+                  
+                </IconButton>
+
                 </div>
               </div>
 

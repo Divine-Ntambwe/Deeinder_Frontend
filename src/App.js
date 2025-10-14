@@ -21,7 +21,7 @@ import Messages from "./Messages/Messages";
 import MessagingContext from "./Context/MessagingContext";
 import io from "socket.io-client"
 
-export const socket = io.connect("http://localhost:8000")
+export const socket = io.connect("https://deeinder-backend.onrender.com")
 
 export const UserContext = React.createContext();
 
@@ -31,9 +31,8 @@ function App() {
     JSON.parse(localStorage.getItem("user")) || ""
   );
   const [authUser,setAuthUser] = useState(btoa(`${user.email}:${user.password}`))
-  const url = "http://localhost:8000"
-  // "https://deeinder-backend.onrender.com";
-  // console.log(authUser)
+  const url = "https://deeinder-backend.onrender.com";
+
 
   function ProtectedRoutes({ element }) {
     if (!user) {

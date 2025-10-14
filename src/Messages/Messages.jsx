@@ -44,15 +44,17 @@ const Messages = () => {
 
   },[messageRecieved])
 
-  const {post:sendMessage} = useFetch(`${url}/sendAMessage`)
+  const {post:sendMessage,data,error} = useFetch(`${url}/sendAMessage`)
   async function handleSendAMessage() {
     const newMessage = {
       senderId: user.username,
       recieverId: currentChat.username,
       timeSent: new Date(),
-      message: messageSent,
+      message: btoa(messageSent),
     };
-
+   
+    sendMessage(newMessage);
+    if (error) return alert("Error No Network")
     await socket.emit("send_message",{...newMessage,room})
 
     setCurrentChat({
@@ -60,7 +62,6 @@ const Messages = () => {
       messages: [...currentChat.messages, newMessage],
     });
     setMessageSent("");
-    sendMessage(newMessage);
   }
 
    const search = (e) => {
@@ -144,7 +145,7 @@ const Messages = () => {
                         : styles.otherMessage
                     }`}
                   >
-                    <div className={styles.messageText}>{msg.message}</div>
+                    <div className={styles.messageText}>{atob(msg.message)||msg.message}</div>
                     <div ref={underLastText}/>
                   </div>
                 ))}
