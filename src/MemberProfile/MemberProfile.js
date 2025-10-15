@@ -4,7 +4,7 @@ import useFetch from "../useFetch";
 import "./MemberProfile.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
-import { fontSize, grid, gridColumn, textAlign } from "@mui/system";
+import { fontSize, grid, gridColumn, margin, textAlign } from "@mui/system";
 import Button from "@mui/material/Button";
 import { UserContext } from "../App.js";
 import CommonNavbar from "../CommonNavbar/CommonNavbar.js";
@@ -186,9 +186,10 @@ function MemberProfile() {
                     ref={likeButton}
                     onClick={handleLikeProfile}
                     style={{
-                      fontSize: "3em",
+                      fontSize: "3.2em",
                       color: "gray",
                       cursor: "pointer",
+                      marginRight:"5px"
                     }}
                     loading={likeProfileLoading || dislikeProfileLoading}
                   />
