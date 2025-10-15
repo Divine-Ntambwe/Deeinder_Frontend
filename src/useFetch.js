@@ -1,11 +1,13 @@
 import { useState, useContext } from "react";
 import { UserContext } from "./App";
+import { useNavigate } from "react-router-dom";
 
 const useFetch = (url, body, toDo) => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { user, setUser, authUser } = useContext(UserContext);
+  const nav = useNavigate()
 
   async function get(toDo = () => {}) {
     setLoading(true);
@@ -23,6 +25,10 @@ const useFetch = (url, body, toDo) => {
       } else {
         setLoading(false);
         setError(data.error);
+        if (res.status === 401){
+          localStorage.clear()
+          nav("/login")
+        }
       }
     } catch (e) {
       console.error(e);
