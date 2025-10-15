@@ -196,7 +196,7 @@ function MemberProfile() {
                 </div>
 
                 <div className="like-connection-grp">
-                  <div>
+                 {member&& <div>
                     <p
                       style={{ cursor: "pointer" }}
                       className="purple-text"
@@ -205,7 +205,7 @@ function MemberProfile() {
                       Connections
                     </p>
                     <span>{member.connections} connections</span>
-                  </div>
+                  </div>}
                 <IconButton
                     onClick={handleSendConnectionRequest}
                     className="Like-Req-btn"
