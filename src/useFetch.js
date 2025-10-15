@@ -26,9 +26,9 @@ const useFetch = (url, body, toDo) => {
         setLoading(false);
         setError(data.error);
         console.log(res.status)
-        if (res.status === 401){
+        if (res.status === 401 && localStorage.getItem("user")){
           localStorage.clear()
-          nav("/login")
+          nav("/")
         }
       }
     } catch (e) {
