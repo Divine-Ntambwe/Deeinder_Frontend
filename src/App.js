@@ -20,6 +20,9 @@ import ConnectionRequests from "./Connections/Connections";
 import Messages from "./Messages/Messages";
 import MessagingContext from "./Context/MessagingContext";
 import io from "socket.io-client"
+import AboutUs from "./T&Cs/AboutUs";
+import TermsAndConditions from "./T&Cs/TermsAndConditions";
+import PrivacyPolicy from "./T&Cs/PrivacyPolicy";
 
 export const socket = io.connect("https://deeinder-backend.onrender.com")
 
@@ -65,6 +68,21 @@ function App() {
                 <Route exact path="/Login" element={<Login />} />
 
                 <Route exact path="/SignUp" element={<SignUp />} />
+                 <Route
+                  exact
+                  path="/AboutUs"
+                  element={<AboutUs />}
+                />
+                 <Route
+                  exact
+                  path="/T&Cs"
+                  element={<TermsAndConditions />}
+                />
+                <Route
+                  exact
+                  path="/PrivacyPolicy"
+                  element={<PrivacyPolicy/>}
+                />
 
                 <Route
                   exact
@@ -93,6 +111,8 @@ function App() {
                   path="/messages"
                   element={<ProtectedRoutes element={<Messages />} />}
                 />
+
+               
               </Routes>
               </MessagingContext>
             </MembersContext>
