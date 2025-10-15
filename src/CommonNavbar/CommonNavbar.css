@@ -22,3 +22,18 @@
     gap: 10px;
     /* background-color: red; */
 }
+
+@media (max-width: 768px) {
+    #common-navbar h1{
+        font-size: 1.4em;
+    }
+
+    #common-navbar nav{
+        height: 45px;
+    }
+
+    #common-nav-icons {
+        gap: 1px;
+        font-size: 0.9em;
+    }
+}

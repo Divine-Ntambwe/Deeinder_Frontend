@@ -32,10 +32,12 @@ const Messages = () => {
       setMessageRecieved(data);
     });
   }, [socket]);
+
+   
   useEffect(() => {
     underLastText.current?.scrollIntoView({ behavior: "smooth" });
-    chat.current.style.display = "flex";
-    if (window.matchMedia("(max-width: 768px)").matches) {
+    if (window.matchMedia("(max-width: 768px)").matches && currentChat) {
+      chat.current.style.display = "flex";
       sidebar.current.style.display = "none";
     }
   }, []);
@@ -131,6 +133,7 @@ const Messages = () => {
                     onClick={() => {
                       chat.current.style.display = "none";
                       sidebar.current.style.display = "block";
+                      setCurrentChat("")
                     }}
                   />
                   <img

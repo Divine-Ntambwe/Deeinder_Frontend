@@ -188,13 +188,16 @@ img {
 
   .sidebar {
     width: 100%;
-    min-height: 93.5vh;
+    min-height: 94vh;
   }
 
   .chat {
     width: 100%;
     display: none;
-     min-height: 91.5vh;
+    min-height: 91.5vh;
+  }
+  .chatHeader{
+    top: 25px !important; 
   }
 
   .chatInput {

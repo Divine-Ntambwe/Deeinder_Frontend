@@ -17,7 +17,7 @@ function CommonNavbar() {
 
           <Link to="/connections"><i className="fa-solid fa-users-rays nav-icons"></i></Link>
 
-          <Link to="/messages"  id="msg-icon-link"><SendOutlinedIcon sx={{fontSize:"1.5em"}} id="msg-icon" className="nav-icons"/></Link>
+          <Link to="/messages"  id="msg-icon-link"><SendOutlinedIcon sx={{fontSize:"1.6em"}} id="msg-icon" className="nav-icons"/></Link>
           <Link to={"/userProfile/"+user.username}><i className="fa-solid fa-user nav-icons"></i></Link>
           {/* <Link><LogoutIcon sx={{fontSize:"2.5em"}}className="nav-icons"/></Link> */}
           </div>
