@@ -222,12 +222,12 @@ function MemberProfile() {
               </div>
 
               <div className="intent-intests">
-                <div>
+             { member &&  <div>
                   <p className="rel-intent">Relationship Intent</p>
                   <p className="purple-text">
                     {member.relationshipIntent || "-"}
                   </p>
-                </div>
+                </div>}
 
                 <div>
                   <p className="short-desc">Interests</p>
