@@ -115,7 +115,7 @@ function SignUp() {
          ></input>
 
          <label >Username:</label>
-         <input required type="text" value={username} onChange={(e) => setUsername(e.target.value)}></input>
+         <input required type="text" value={username} onChange={(e) => setUsername(e.target.value.replaceAll(" ",""))}></input>
 <label>Gender:</label>
            <div id="genders">
 
@@ -137,7 +137,7 @@ function SignUp() {
         </div>
         <div id="left">
           <label>Email:</label>
-          <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+          <input required type="email" value={email} onChange={(e) => setEmail(e.target.value.replaceAll(" ",""))}></input>
 
 
          <label>Password:</label>

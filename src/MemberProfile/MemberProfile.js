@@ -52,6 +52,7 @@ function MemberProfile() {
   function hideText() {
     // noPhotoText.current.style.display = "none";
   }
+  console.log(member)
 
   useEffect(() => {
     getMember((d) => {
